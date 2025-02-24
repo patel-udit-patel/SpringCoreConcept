@@ -1,5 +1,8 @@
 package com.example.spring_core_concepts.controller;
 
+import com.example.spring_core_concepts.beans.EmployeeBean;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,8 +23,16 @@ public class HelloController {
 
     @GetMapping("/helloworld")
     public String sayHelloWithLogger() {
-        logger.info("Received request for /hello endpoint");
-        logger.debug("Processing request in sayHello method");
+        logger.info("Received request for /helloworld endpoint");
+        logger.debug("Processing request in sayHelloWithLogger method");
         return "Hello, Spring Boot!";
+    }
+
+    @Autowired
+    private EmployeeBean employee;
+    @GetMapping("/employee")
+    public String getEmployeeDetails() {
+        logger.info("Received request for /employee endpoint");
+        return employee.getEmployeeDetails();
     }
 }
